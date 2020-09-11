@@ -1,0 +1,116 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://house-1.gd" type="Script" id=1]
+[ext_resource path="res://img/enviroment/buildings/roofs/stairs-1.png" type="Texture" id=2]
+[ext_resource path="res://img/enviroment/buildings/roofs/floor-1.png" type="Texture" id=3]
+[ext_resource path="res://img/enviroment/buildings/roofs/walls-1.png" type="Texture" id=4]
+[ext_resource path="res://img/enviroment/buildings/roofs/roof-1-15.png" type="Texture" id=5]
+[ext_resource path="res://img/enviroment/buildings/roofs/roof-1-100.png" type="Texture" id=6]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 10, 10 )
+
+[sub_resource type="RectangleShape2D" id=2]
+
+custom_solver_bias = 0.0
+extents = Vector2( 10, 10 )
+
+[node name="house-1" type="Node2D" index="0"]
+
+z_index = 2
+z_as_relative = false
+script = ExtResource( 1 )
+_sections_unfolded = [ "Z Index" ]
+
+[node name="stairs" type="Sprite" parent="." index="0"]
+
+texture = ExtResource( 2 )
+
+[node name="floor" type="Sprite" parent="." index="1"]
+
+texture = ExtResource( 3 )
+
+[node name="walls" type="Sprite" parent="." index="2"]
+
+texture = ExtResource( 4 )
+
+[node name="walls2" type="KinematicBody2D" parent="." index="3"]
+
+editor/display_folded = true
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="walls2" index="0"]
+
+position = Vector2( -7.16802, -194.515 )
+scale = Vector2( 32.2374, 1.91112 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="walls2" index="1"]
+
+position = Vector2( -309.753, -36.7636 )
+rotation = -1.56796
+scale = Vector2( 14.5967, 1.91112 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="walls2" index="2"]
+
+position = Vector2( 296.728, -33.1536 )
+rotation = -1.56796
+scale = Vector2( 14.5967, 1.91112 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="walls2" index="3"]
+
+position = Vector2( -299.5, 124.957 )
+scale = Vector2( 3.03846, 1.91112 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="walls2" index="4"]
+
+position = Vector2( 105.5, 124.957 )
+scale = Vector2( 21.1154, 1.91112 )
+shape = SubResource( 1 )
+
+[node name="roof2" type="Sprite" parent="." index="4"]
+
+rotation = 0.00122286
+z_index = 10
+z_as_relative = false
+texture = ExtResource( 5 )
+
+[node name="roof" type="Sprite" parent="." index="5"]
+
+z_index = 10
+z_as_relative = false
+texture = ExtResource( 6 )
+
+[node name="Area2D" type="Area2D" parent="." index="6"]
+
+position = Vector2( -6.19357, -32.3433 )
+scale = Vector2( 10.1801, 5.74793 )
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
+
+modulate = Color( 0.210575, 0.636719, 0.0373077, 1 )
+position = Vector2( -0.0544156, -0.289157 )
+scale = Vector2( 3.17739, 3.12141 )
+shape = SubResource( 2 )
+_sections_unfolded = [ "Visibility" ]
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+
+[connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]
+
+
